@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@next"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="to-do-list.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+  <title>To Do List</title>
+</head>
+<body>
+  <div class="box-border flex md:items-center justify-center bg-gray-200 h-screen w-full">
+  <div id="app" class="rounded-xl bg-gray-200 md:mt-0 mt-36 p-6">
+    <h2 class="mb-4 text-center text-2xl">TO DO LIST</h2>
+    <input class="p-2 shadow-md" type="text" placeholder=" Add item" v-model="newTodo" 
+    @keyup.enter="addTodo(newTodo)">
+    <button 
+    class="bg-white ml-2 p-2 shadow-md"
+    v-on:click="addTodo(newTodo)"
+    v-bind:disabled="newTodo.length === 0">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
+    <ul class="pt-4">
+        <li v-for="todo in todos" class="my-4 pl-4 flex items-center justify-between bg-white px-2 py-3 uppercase shadow-md relative">
+        {{todo.content}}
+              <button v-on:click="removeTodo(todo)" class="btn">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+        </li>
+    </ul>
+    <!-- <pre>
+        {{this.todos}}
+    </pre> -->
+  </div>
+</div>
+  <script src="to-do-list.js"></script>
+</body>
+</html>
